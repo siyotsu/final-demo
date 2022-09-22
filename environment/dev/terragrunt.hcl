@@ -47,13 +47,13 @@ generate "tfenv" {
   disable_signature = true
 
   contents = <<EOF
-0.14.7
+1.1.9
 EOF
 }
 
-terraform_version_constraint = "0.14.7"
+terraform_version_constraint = "1.1.9"
 
-terragrunt_version_constraint = ">= 0.26.7"
+terragrunt_version_constraint = ">= 0.37.0"
 
 terraform {
   after_hook "remove_lock" {
