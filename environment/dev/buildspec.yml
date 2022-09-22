@@ -6,8 +6,8 @@ env:
     REPOSITORY_REGION: "us-east-1"
     ENV: "dev"
     APP_NAME: "app"
-    TERRAFORM_VERSION: "0.14.7"
-    TERRAGRUNT_VERSION: "0.28.7"
+    TERRAFORM_VERSION: "1.1.9"
+    TERRAGRUNT_VERSION: "0.37.0"
     
 phases:
   pre_build:
