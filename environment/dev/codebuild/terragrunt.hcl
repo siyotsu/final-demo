@@ -19,16 +19,16 @@ dependency "cluster" {
   config_path = "../cluster"
   mock_outputs = {
     vpc_id          = "vpc-000000000000"
-    subnets = ["subnet-00000000000", "subnet-111111111111"]
+    public_subnet_ids = ["subnet-00000000000", "subnet-111111111111"]
   }
 }
 
 inputs = merge(
   local.secrets.inputs,
   {
-    vpc_id = dependency.cluster.output.vpc_id
+    vpc_id = dependency.cluster.outputs.vpc_id
     // subnets = dependency.cluster.outputs.subnets
-    subnets = dependency.cluster.output.public_subnet_ids
+    public_subnet_ids = dependency.cluster.outputs.public_subnet_ids
     build_spec_file = "environment/dev/buildspec.yml"
   }
 )
