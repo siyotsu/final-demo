@@ -9,7 +9,7 @@ include {
 dependency "ecr" {
   config_path = "../ecr"
   mock_outputs = {
-  ecr_url = "000000000000.dkr.ecr.eu-west-1.amazonaws.com/image"
+  ecr_repository_url = "000000000000.dkr.ecr.eu-west-1.amazonaws.com/image"
   registry_id = "000000000000"
   }
   # skip_outputs = true
@@ -17,6 +17,6 @@ dependency "ecr" {
 
 inputs = {
   working_dir = format("%s/../../../app", get_terragrunt_dir())
-  ecr_url = dependency.ecr.output.ecr_repository_url
-  registry_id = dependency.ecr.output.reg_id
+  ecr_repository_url = dependency.ecr.outputs.ecr_repository_url
+  registry_id = dependency.ecr.outputs.registry_id
 }
