@@ -1,6 +1,5 @@
 variable "aws_region" {
   description = "AWS region"
-  # default = "us-east-1"
 }
 
 variable "aws_profile" {
@@ -31,36 +30,11 @@ variable "vpc_cidr" {
 
 variable "public_subnet_cidrs" {
   type = list
-    # default = [
-    # "10.0.1.0/24",
-    # "10.0.2.0/24"
-    # ]
 }
 
 variable "private_subnet_cidrs" {
   type = list
 }
-
-# variable "env" {
-#   type = string
-#   # default = "dev"
-# }
-
-# variable "public_subnet_cidrs" {
-#   default = [
-#     "10.0.1.0/24",
-#     "10.0.2.0/24",
-#     "10.0.3.0/24"
-#   ]
-# }
-
-# variable "private_subnet_cidrs" {
-#   default = [
-#     "10.0.11.0/24",
-#     "10.0.22.0/24",
-#     "10.0.33.0/24"
-#   ]
-# }
 
 variable "app_port" {
   description = "Port exposed by the docker image to redirect traffic to"
@@ -81,24 +55,15 @@ variable "number_memory" {
 
 variable "environment" {
   type = string
-  # default = "env"
 }
 
 variable "app_name" {
   type = string
-  # default = "flask"
 }
 
 variable "taskdef_template" {
   default = "cb_application.json.tpl"
 }
-
-# variable "app_image" {
-#   type = string
-#   # default = "174462142093.dkr.ecr.us-east-1.amazonaws.com/test-rep:latest"
-#   # 174462142093.dkr.ecr.us-east-1.amazonaws.com/app-env
-#   default = "716735117304.dkr.ecr.us-east-1.amazonaws.com/app-env:latest"
-# }
 
 locals {
   app_image = format("%s:%s", var.ecr_repository_url, var.image_tag)
@@ -159,7 +124,7 @@ variable "ecs-service-name" {
 
 variable "ecs-container-name" {
   type = string
-  default = "flask-app"
+  default = "app"
 }
 
 variable "ecs-container-port" {
