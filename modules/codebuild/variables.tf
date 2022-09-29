@@ -36,7 +36,13 @@ variable "github_token" {
   default     = ""
 }
 
-variable "public_subnet_ids" {
+# variable "public_subnet_ids" {
+#   type        = list(string)
+#   default     = null
+#   description = "The subnet IDs that include resources used by CodeBuild"
+# }
+
+variable "private_subnet_ids" {
   type        = list(string)
   default     = null
   description = "The subnet IDs that include resources used by CodeBuild"
