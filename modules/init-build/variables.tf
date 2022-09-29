@@ -10,18 +10,13 @@ variable "remote_state_bucket" {}
 
 variable "image_tag" {
     type = string
-    # default = "latest"
 }
 
 variable "working_dir" {
     type = string
 }
 
-variable "reg_id" {
-    type = string
-}
-
-variable "region" {
+variable "registry_id" {
     type = string
 }
 
