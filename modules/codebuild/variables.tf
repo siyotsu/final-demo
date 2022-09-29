@@ -12,12 +12,6 @@ variable "repo_url" {
   description = "URL to Github repository to fetch source from"
 }
 
-# variable "github_oauth_token" {
-#   description = "Github OAuth token with repo access permissions"
-#   type        = string
-#   default     = ""
-# }
-
 variable "environment" {
   type        = string
 }
@@ -35,12 +29,6 @@ variable "vpc_id" {
   default     = null
   description = "The VPC ID that CodeBuild uses"
 }
-
-# variable "subnets" {
-#   type        = list(string)
-#   default     = null
-#   description = "The subnet IDs that include resources used by CodeBuild"
-# }
 
 variable "github_token" {
   description = "GitHub token"
