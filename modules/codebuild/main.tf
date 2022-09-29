@@ -32,7 +32,7 @@ resource "aws_codebuild_project" "project" {
   name = local.codebuild_project_name
   description = local.description
   build_timeout = "120"
-  service_role = aws_iam_role.role.arn
+  service_role = aws_iam_role.codebuild_role.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
