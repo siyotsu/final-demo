@@ -24,7 +24,7 @@ data "template_file" "flask_app" {
   template = file(var.taskdef_template)
 
   vars = {
-    app_image      = var.app_image
+    app_image      = local.app_image
     app_port       = var.app_port
     number_cpu    = var.number_cpu
     number_memory = var.number_memory
@@ -36,9 +36,7 @@ data "template_file" "flask_app" {
 }
 
 resource "aws_ecs_task_definition" "task-definition-test" {
-  # family                = "${var.app_name}-${var.environment}-task"
   family                = var.task_definition_family
-  # container_definitions = file("D:/DevOps/Academy/Demo2/Project/container-definitions/container-def.json")
   container_definitions    = data.template_file.flask_app.rendered
   network_mode          = var.task_definition_network_mode
 }
@@ -59,7 +57,6 @@ resource "aws_ecs_service" "service" {
     container_name   = var.ecs-container-name
     container_port   = var.ecs-container-port
   }
-  # Optional: Allow external changes without Terraform plan difference(for example ASG)
   lifecycle {
     ignore_changes = [desired_count]
   }
