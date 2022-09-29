@@ -1,6 +1,6 @@
 [
     {
-      "name": "${app_name}-app",
+      "name": "${app_name}",
       "image": "${app_image}",
       "cpu": ${number_cpu},
       "memory": ${number_memory},
