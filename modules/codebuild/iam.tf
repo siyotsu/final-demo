@@ -163,6 +163,39 @@ resource "aws_iam_role_policy" "role_policy" {
       "Resource": "*"
     },
     {
+      "Action": [
+        "iam:GetAccessKeyLastUsed",
+        "iam:GetGroup*",
+        "iam:GetInstanceProfile",
+        "iam:GetLoginProfile",
+        "iam:GetOpenIDConnectProvider",
+        "iam:GetPolicy*",
+        "iam:GetRole*",
+        "iam:GetSAMLProvider",
+        "iam:GetSSHPublicKey",
+        "iam:GetServerCertificate",
+        "iam:GetServiceLastAccessed*",
+        "iam:GetUser*",
+        "iam:ListAccessKeys",
+        "iam:ListAttached*",
+        "iam:ListEntitiesForPolicy",
+        "iam:ListGroupPolicies",
+        "iam:ListGroupsForUser",
+        "iam:ListInstanceProfiles*",
+        "iam:ListMFADevices",
+        "iam:ListPolicyVersions",
+        "iam:ListRolePolicies",
+        "iam:ListSSHPublicKeys",
+        "iam:ListSigningCertificates",
+        "iam:ListUserPolicies",
+        "iam:Upload*"
+        ],
+        "Effect": "Allow",
+        "Resource": [
+            "*"
+        ]
+    },  
+    {
       "Effect": "Allow",
       "Action": [
         "ec2:CreateNetworkInterfacePermission"
