@@ -10,12 +10,10 @@ variable "remote_state_bucket" {}
 
 variable "app_name" {
   type = string
-  # default = "app"
 }
 
 variable "environment" {
   type = string
-  # default = "env"
 }
 
 locals {
