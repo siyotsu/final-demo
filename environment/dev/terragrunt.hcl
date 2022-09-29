@@ -9,11 +9,13 @@ locals {
   repo_url = "https://github.com/teslaluv/final-demo"
   branch_pattern = "^refs/heads/development$"
   git_trigger_event = "PUSH"
-  public_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24"]
+  vpc_cidr = "10.0.0.0/16"
+  public_subnet_cidrs = [
+     "10.0.1.0/24",
+     "10.0.2.0/24"
+   ]
   private_subnet_cidrs = []
   // private_subnet_cidrs = ["10.0.11.0/24", "10.0.22.0/24"]
-//   app_count = 1
-//   enable_bastion = true
 }
 
 inputs = {
@@ -27,10 +29,9 @@ inputs = {
   repo_url = local.repo_url
   branch_pattern = local.branch_pattern
   git_trigger_event = local.git_trigger_event
+  vpc_cidr = local.vpc_cidr
   public_subnet_cidrs = local.public_subnet_cidrs
   private_subnet_cidrs = local.private_subnet_cidrs
-//   app_count = local.app_count
-//   enable_bastion = local.enable_bastion
 }
 
 remote_state {
