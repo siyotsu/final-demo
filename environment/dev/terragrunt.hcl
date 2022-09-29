@@ -1,5 +1,5 @@
 locals {
-  remote_state_bucket_prefix = "terraform"
+  remote_state_bucket_prefix = "terra"
   environment = "dev"
   app_name = "app"
   aws_profile = "default"
