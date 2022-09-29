@@ -18,5 +18,5 @@ dependency "ecr" {
 }
 
 inputs = {
-    ecr_repository_url = dependency.ecr.output.ecr_repository_url
+    ecr_repository_url = dependency.ecr.outputs.ecr_repository_url
   }
