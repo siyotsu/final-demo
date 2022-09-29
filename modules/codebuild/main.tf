@@ -26,26 +26,8 @@ resource "aws_codebuild_source_credential" "this" {
   token       = var.github_token
 }
 
-# resource "null_resource" "import_source_credentials" {
-
-  
-#   triggers = {
-#     github_oauth_token = var.github_oauth_token
-#   }
-
-#   provisioner "local-exec" {
-#     command = <<EOF
-#       aws --region ${data.aws_region.current.name} codebuild import-source-credentials \
-#                                                              --token ${var.github_oauth_token} \
-#                                                              --server-type GITHUB \
-#                                                              --auth-type PERSONAL_ACCESS_TOKEN
-# EOF
-#   }
-# }
-
 # CodeBuild Project
 resource "aws_codebuild_project" "project" {
-#   depends_on = [null_resource.import_source_credentials]
   depends_on = [aws_codebuild_source_credential.this]  
   name = local.codebuild_project_name
   description = local.description
@@ -57,12 +39,9 @@ resource "aws_codebuild_project" "project" {
 }
 
   environment {
-    # https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-compute-types.html
-    compute_type = "BUILD_GENERAL1_SMALL" # 7 GB memory
-    # https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html
+    compute_type = "BUILD_GENERAL1_SMALL"
     image = "aws/codebuild/standard:4.0"
     type = "LINUX_CONTAINER"
-    # The privileged flag must be set so that your project has the required Docker permissions
     privileged_mode = true
 
     environment_variable {
@@ -79,26 +58,9 @@ resource "aws_codebuild_project" "project" {
     report_build_status = "true"
   }
 
-  # Removed due using cache from ECR
-  # cache {
-  #   type = "LOCAL"
-  #   modes = ["LOCAL_DOCKER_LAYER_CACHE"]
-  # }
-
-  # https://docs.aws.amazon.com/codebuild/latest/userguide/vpc-support.html#enabling-vpc-access-in-projects
-  # Access resources within our VPC
-  // dynamic "vpc_config" {
-  //   for_each = var.vpc_id == null ? [] : [var.vpc_id]
-  //   content {
-  //     vpc_id = var.vpc_id
-  //     subnets = var.subnets
-  //     security_group_ids = var.security_groups
-  //   }
-  // }
   vpc_config {
     vpc_id = var.vpc_id
 
-    # subnets = var.subnets
     subnets = var.public_subnet_ids
     security_group_ids = [ aws_security_group.codebuild_sg.id ]
   }
@@ -107,7 +69,6 @@ resource "aws_codebuild_project" "project" {
 resource "aws_codebuild_webhook" "develop_webhook" {
   project_name = aws_codebuild_project.project.name
 
-  # https://docs.aws.amazon.com/codebuild/latest/APIReference/API_WebhookFilter.html
   filter_group {
     filter {
       type = "EVENT"
