@@ -8,6 +8,7 @@ resource "null_resource" "build" {
         REGISTRY_ID = var.registry_id
         REPOSITORY_REGION = var.aws_region
         APP_NAME = var.app_name
+        ENV_NAME = var.environment
     }
   }
 }
