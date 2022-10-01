@@ -43,7 +43,9 @@ locals {
   private_subnet_cidrs = ["10.0.11.0/24", "10.0.22.0/24"]
 }
 ```
-#### 4. The next step is to add your AWS credentials. For example you can run this commands in terminal.
+#### 4. The next step is to add your AWS credentials.
+
+For example you can run this commands in terminal.
 ```
 export AWS_ACCESS_KEY_ID=<your_access_key_id>
 export AWS_SECRET_ACCESS_KEY=<your_secret_access_key>
