@@ -1,5 +1,5 @@
 resource "aws_iam_role" "codebuild_role" {
-  name = "codebuild-role-${var.env}-${var.app_name}"
+  name = "codebuild-role-${var.environment}-${var.app_name}"
 
   assume_role_policy = <<EOF
 {
@@ -24,7 +24,7 @@ resource "aws_iam_role_policy_attachment" "ecs_full_access" {
 
 resource "aws_iam_role_policy" "cobebuild_policy" {
   role = aws_iam_role.codebuild_role.name
-  name = "codebuild-policy-${var.env}-${var.app_name}"
+  name = "codebuild-policy-${var.environment}-${var.app_name}"
 
   policy = <<POLICY
 {
@@ -314,11 +314,11 @@ resource "aws_iam_role_policy" "cobebuild_policy" {
               "Action": [
                 "ec2:CreateNetworkInterfacePermission"
               ],
-              "Resource": "arn:aws:ec2:${var.region}:*:network-interface/*",
+              "Resource": "arn:aws:ec2:${var.aws_region}:*:network-interface/*",
               "Condition": {
                 "StringLike": {
                   "ec2:Subnet": [
-                    "arn:aws:ec2:${var.region}:*:subnet/*"
+                    "arn:aws:ec2:${var.aws_region}:*:subnet/*"
                   ],
                   "ec2:AuthorizedService": "codebuild.amazonaws.com"
                 }
