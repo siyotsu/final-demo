@@ -20,12 +20,12 @@
 
 ### Steps to launch the project:
 
-1. Install Terraform, Terragrunt and Git.
-2. Clone this repository
+#### 1. Install Terraform, Terragrunt and Git.
+#### 2. Clone this repository
 ```
 git clone <https://github.com/teslaluv/final-demo.git>
 ```
-3. Then you need to write your variables in local block in environment/dev/terragrunt.hcl file and environment/prod/terragrunt.hcl
+#### 3. Then you need to write your variables in local block in environment/dev/terragrunt.hcl file and environment/prod/terragrunt.hcl
 ```
 locals {
   remote_state_bucket_prefix = "terra"
@@ -43,19 +43,20 @@ locals {
   private_subnet_cidrs = ["10.0.11.0/24", "10.0.22.0/24"]
 }
 ```
-4. The next step is to add your AWS credentials. For example you can run this commands in terminal.
+#### 4. The next step is to add your AWS credentials. For example you can run this commands in terminal.
 ```
 export AWS_ACCESS_KEY_ID=<your_access_key_id>
 export AWS_SECRET_ACCESS_KEY=<your_secret_access_key>
 export AWS_REGION=<your_aws_region> # Region must be the same as a in terragrunt.hcl file
 ```
-5. Also you need to create 2 files environment/dev/secrets.hcl and environment/prod/secrets.hcl
+#### 5. Also you need to create 2 files environment/dev/secrets.hcl and environment/prod/secrets.hcl
 ```
 inputs = {
 github_token = "ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" # your github token
 }
 ```
-6. The last step is to run Terragrunt
+#### 6. The last step is to run Terragrunt
+
 To start the project, go to the /environment/dev or /environment/prod directory and run these commands one by one if you don't get any error
 ```
 terragrunt run-all init
@@ -67,7 +68,7 @@ terragrunt run-all plan
 terragrunt run-all apply
 ```
 
-7. If you need to destroy the infrastructure 
+#### 7. If you need to destroy the infrastructure 
 ```
 terragrunt run-all destroy
 ```
