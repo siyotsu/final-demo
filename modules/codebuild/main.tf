@@ -31,8 +31,8 @@ resource "aws_codebuild_project" "project" {
   depends_on = [aws_codebuild_source_credential.this]  
   name = local.codebuild_project_name
   description = local.description
-  build_timeout = "120"
-  service_role = aws_iam_role.role.arn
+  build_timeout = "5"
+  service_role = aws_iam_role.codebuild_role.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
@@ -61,7 +61,8 @@ resource "aws_codebuild_project" "project" {
   vpc_config {
     vpc_id = var.vpc_id
 
-    subnets = var.public_subnet_ids
+    subnets = var.private_subnet_ids
+    # subnets = var.public_subnet_ids
     security_group_ids = [ aws_security_group.codebuild_sg.id ]
   }
 }
