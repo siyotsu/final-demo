@@ -6,7 +6,7 @@
 - Terragrunt - 0.28.7
 
 
-###№ Every environment has:
+#### Every environment has:
 - 2 Public subnets
 - 2 Private subnets
 - Internet gateway
