@@ -31,8 +31,8 @@ resource "aws_codebuild_project" "project" {
   depends_on = [aws_codebuild_source_credential.this]  
   name = local.codebuild_project_name
   description = local.description
-  build_timeout = "120"
-  service_role = aws_iam_role.role.arn
+  build_timeout = "5"
+  service_role = aws_iam_role.codebuild_role.arn
 
   artifacts {
     type = "NO_ARTIFACTS"
