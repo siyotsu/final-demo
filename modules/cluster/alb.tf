@@ -1,5 +1,5 @@
 resource "aws_lb" "test-lb" {
-  name               = var.lb-name
+  name               = "${var.environment}-ecs-lb"
   load_balancer_type = var.lb-type
   internal           = false
   subnets            = [for subnet in aws_subnet.public_subnets : subnet.id]

@@ -16,17 +16,17 @@ variable "environment" {
   type = string
 }
 
-variable "key_name" {
-  type        = string
-  description = "The name for ssh key, used for aws_launch_configuration"
-  default = "${var.app_name}-${var.environment}-dev"
-}
+# variable "key_name" {
+#   type        = string
+#   description = "The name for ssh key, used for aws_launch_configuration"
+#   default = "${var.app_name}-${var.environment}-key"
+# }
 
-variable "cluster_name" {
-  type        = string
-  description = "The name of AWS ECS cluster"
-  default = "${var.app_name}-${var.environment}-cluster"
-}
+# variable "cluster_name" {
+#   type        = string
+#   description = "The name of AWS ECS cluster"
+#   default = "${var.app_name}-${var.environment}-cluster"
+# }
 
 locals {
   repository_name = format("%s-%s", var.app_name, var.environment)
@@ -87,25 +87,25 @@ variable "ec2-sg-description" {
   default = "allow all"
 }
 
-variable "ltemplate-name" {
-  type = string
-  default = "${var.environment}_ecs"
-}
+# variable "ltemplate-name" {
+#   type = string
+#   default = "${var.environment}_ecs"
+# }
 
 variable "ltemplate-instance-type" {
   type = string
   default = "t2.micro"
 }
 
-variable "asg-name" {
-  type = string
-  default = "${var.environment}-asg"
-}
+# variable "asg-name" {
+#   type = string
+#   default = "${var.environment}-asg"
+# }
 
-variable "ecs_capacity_provider_name" {
-  type = string
-  default = "capacity-provider-${var.environment}"
-}
+# variable "ecs_capacity_provider_name" {
+#   type = string
+#   default = "capacity-provider-${var.environment}"
+# }
 
 variable "task_definition_family" {
   type = string
@@ -122,20 +122,20 @@ variable "ecs-service-name" {
   default = "web-service"
 }
 
-variable "ecs-container-name" {
-  type = string
-  default = "${var.app_name}"
-}
+# variable "ecs-container-name" {
+#   type = string
+#   default = "${var.app_name}"
+# }
 
 variable "ecs-container-port" {
   type = number
   default = 5000
 }
 
-variable "lb-name" {
-  type = string
-  default = "${var.environment}-ecs-lb"
-}
+# variable "lb-name" {
+#   type = string
+#   default = "${var.environment}-ecs-lb"
+# }
 
 variable "lb-type" {
   type = string

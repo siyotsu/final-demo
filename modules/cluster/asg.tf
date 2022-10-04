@@ -41,13 +41,13 @@ resource "aws_security_group" "ec2-sg" {
 }
 
 resource "aws_launch_template" "ltemplate" {
-  name                   = var.ltemplate-name
+  name                   = "${var.environment}_ecs"
   image_id               = data.aws_ami.amazon_linux.id
   instance_type          = var.ltemplate-instance-type
   iam_instance_profile {
     name = aws_iam_instance_profile.ecs_service_role.name
   }       
-  key_name                    = var.key_name
+  key_name                    = "${var.app_name}-${var.environment}-key"
   network_interfaces {
     associate_public_ip_address = true
     security_groups = [aws_security_group.ec2-sg.id]
@@ -56,13 +56,13 @@ resource "aws_launch_template" "ltemplate" {
   user_data = "${base64encode(<<EOF
     #! /bin/bash
     sudo apt-get update
-    sudo echo "ECS_CLUSTER=${var.cluster_name}" >> /etc/ecs/ecs.config
+    sudo echo "ECS_CLUSTER=${var.app_name}-${var.environment}-cluster" >> /etc/ecs/ecs.config
   EOF
   )}"
 }
 
 resource "aws_autoscaling_group" "asg" {
-  name                      = var.asg-name
+  name                      = "${var.environment}-asg"
   min_size                  = 1
   max_size                  = 3
   desired_capacity          = 2
