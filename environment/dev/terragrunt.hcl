@@ -10,11 +10,7 @@ locals {
   branch_pattern = "^refs/heads/development$"
   git_trigger_event = "PUSH"
   vpc_cidr = "10.0.0.0/16"
-  public_subnet_cidrs = [
-     "10.0.1.0/24",
-     "10.0.2.0/24"
-   ]
-  // private_subnet_cidrs = []
+  public_subnet_cidrs = ["10.0.1.0/24","10.0.2.0/24"]
   private_subnet_cidrs = ["10.0.11.0/24", "10.0.22.0/24"]
 }
 
